@@ -1,0 +1,99 @@
+<!--
+psono_audit 2020-05-24T07:55:37.720973 logger=restapi.views.info, user_ip=10.10.10.145, req_method=GET, req_url=/info/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=READ_INFO_SUCCESS
+psono_audit 2020-05-24T07:55:40.190189 logger=restapi.views.login, user_ip=10.10.10.145, req_method=POST, req_url=/authentication/login/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=LOGIN_STARTED_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20
+psono_audit 2020-05-24T07:55:40.927078 logger=restapi.views.activate_token, user_ip=10.10.10.145, req_method=POST, req_url=/authentication/activate-token/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=LOGIN_ACTIVATE_TOKEN_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20, kwarg_token_id=a1398962-05a7-433d-a8f3-999df3e157b8
+psono_audit 2020-05-24T07:55:41.027323 logger=restapi.views.status, user_ip=10.10.10.145, req_method=GET, req_url=/user/status/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=READ_STATUS_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20
+psono_audit 2020-05-24T07:55:41.416086 logger=restapi.views.datastore, user_ip=10.10.10.145, req_method=GET, req_url=/datastore/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=LIST_ALL_DATASTORES_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20
+psono_audit 2020-05-24T07:55:41.473771 logger=restapi.views.datastore, user_ip=10.10.10.145, req_method=GET, req_url=/datastore/bed4572d-6a28-4c00-94c2-dd45322de1d0/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=LIST_DATASTORE_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20, kwarg_datastore_id=bed4572d-6a28-4c00-94c2-dd45322de1d0
+psono_audit 2020-05-24T07:55:41.936556 logger=restapi.views.share_right, user_ip=10.10.10.145, req_method=GET, req_url=/share/right/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=READ_GROUP_SHARE_RIGHTS_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20
+psono_audit 2020-05-24T07:55:42.002075 logger=restapi.views.share, user_ip=10.10.10.145, req_method=GET, req_url=/share/de10070a-e836-4fb7-838c-89a85486c7c5/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=READ_SHARE_SUCCESS, user=demo2@example.com, user_id=ba504938-9a23-4162-867f-6840c301bc20, kwarg_share_id=de10070a-e836-4fb7-838c-89a85486c7c5
+psono_audit 2020-05-24T07:57:11.970816 logger=restapi.views.health_check, user_ip=127.0.0.1, req_method=GET, req_url=/healthcheck/, success=True, hostname=0a5048185933, status=HTTP_200_OK, event=CHECK_HEALTH_SUCCESS
+-->
+
+<decoder name="psono">
+    <prematch>psono_audit</prematch>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>logger=(\S+),|logger=(\S+)</regex>
+    <order>api_path</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>user_ip="(\S+),|user_ip=(\S+),</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>user_ip="(\.*)"</regex>
+    <order>user_ip</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>req_method=(\S+),|req_method=(\S+)</regex>
+    <order>req_method</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>req_url=(\S+),|req_url=(\S+)</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>success=(\S+),|success=(\S+)</regex>
+    <order>success</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>hostname=(\S+),|hostname=(\S+)</regex>
+    <order>psono_name</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>status=(\S+),|status=(\S+)</regex>
+    <order>status</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>event=(\S+),|event=(\S+)</regex>
+    <order>event</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>user=(\S+),|user=(\S+)</regex>
+    <order>user</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>user_id=(\S+),|user_id=(\S+)</regex>
+    <order>user_id</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>kwarg_share_id=(\S+),|kwarg_share_id=(\S+)</regex>
+    <order>share_id</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>kwarg_token_id=(\S+),|kwarg_token_id=(\S+)</regex>
+    <order>token_id</order>
+</decoder>
+
+<decoder name="psono-fields">
+    <parent>psono</parent>
+    <regex>kwarg_datastore_id=(\S+),|kwarg_datastore_id=(\S+)</regex>
+    <order>datastore_id</order>
+</decoder>
