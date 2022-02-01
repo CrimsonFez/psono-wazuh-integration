@@ -1,0 +1,22 @@
+<group name="psono">
+    <rule id="100800" level="3">
+        <decoded_as>psono</decoded_as>
+        <description>Psono Base Rule: $(psono_name) $(event)</description>
+    </rule>
+    <rule id="100801" level="0">
+        <if_sid>100800</if_sid>
+        <field name="api_path">restapi.views.health_check</field>
+        <description>Psono Health Check</description>
+    </rule>
+    <rule id="100802" level="3">
+        <if_sid>100801</if_sid>
+        <field name="success">True</field>
+        <description>Psono: $(psono_name) Health Check Success</description>
+    </rule>
+    
+    <rule id="100803" level="3">
+        <if_sid>100801</if_sid>
+        <field name="success">False</field>
+        <description>Psono: $(psono_name) Health Check Failed</description>
+    </rule>
+</group>
