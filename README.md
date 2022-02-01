@@ -49,7 +49,6 @@ This configuration can also be used on a wazuh-manager install.
 ## Wazuh Ruleset
 Add the following files to your wazuh manager install.
 - `psono-decoders.xml` --> `/var/ossec/etc/decoders/`
-**The psono-rules.xml is in a primitive state, only basic logging of all events.**
-- `psono-rules.xml` --> `/var/ossec/etc/rules/`
+- `psono-rules.xml` --> `/var/ossec/etc/rules/` **The psono-rules.xml is in a primitive state, only basic logging of all events.**
 
 Alternativly you can add them through the web interface.
