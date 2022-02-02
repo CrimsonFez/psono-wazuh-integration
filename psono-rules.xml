@@ -8,7 +8,7 @@
         <field name="api_path">restapi.views.health_check</field>
         <description>Psono Health Check</description>
     </rule>
-    <rule id="100802" level="3">
+    <rule id="100802" level="0">
         <if_sid>100801</if_sid>
         <field name="success">True</field>
         <description>Psono: $(psono_name) Health Check Success</description>
