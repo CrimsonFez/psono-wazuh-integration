@@ -13,10 +13,24 @@
         <field name="success">True</field>
         <description>Psono: $(psono_name) Health Check Success</description>
     </rule>
-    
     <rule id="100803" level="3">
         <if_sid>100801</if_sid>
         <field name="success">False</field>
         <description>Psono: $(psono_name) Health Check Failed</description>
+    </rule>
+    <rule id="100804" level="0">
+        <if_sid>100800</if_sid>
+        <field name="api_path">fileserver.views.alive</field>
+        <description>Fileserver Alive Check</description>
+    </rule>
+    <rule id="100805" level="0">
+        <if_sid>100804</if_sid>
+        <field name="success">True</field>
+        <description>Psono: $(psono_name) Fileserver Health Check Success</description>
+    </rule>
+    <rule id="100806" level="3">
+        <if_sid>100804</if_sid>
+        <field name="success">False</field>
+        <description>Psono: $(psono_name) Fileserver Health Check Failed</description>
     </rule>
 </group>
