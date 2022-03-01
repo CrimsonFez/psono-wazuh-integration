@@ -33,4 +33,46 @@
         <field name="success">False</field>
         <description>Psono: $(psono_name) Fileserver Health Check Failed</description>
     </rule>
+    <rule id="100807" level="0">
+        <field name="api_path">restapi.views.status</field>
+        <description>Psono Read Status</description>
+    </rule>
+    <rule id="100808" level="0">
+        <if_sid>100807</if_sid>
+        <field name="success">True</field>
+        <description>Psono: $(psono_name) Read Status Success</description>
+    </rule>
+    <rule id="100809" level="3">
+        <if_sid>100807</if_sid>
+        <field name="success">False</field>
+        <description>Psono: $(psono_name) Read Status Failed</description>
+    </rule>
+    <rule id="100810" level="0">
+        <field name="api_path">fileserver.views.cleanup_chunks</field>
+        <description>Psono Fileserver Chunk Cleanup</description>
+    </rule>
+    <rule id="100811" level="0">
+        <if_sid>100810</if_sid>
+        <field name="success">True</field>
+        <description>Psono: $(psono_name) Fileserver Chunk Cleanup Success</description>
+    </rule>
+    <rule id="100812" level="3">
+        <if_sid>100810</if_sid>
+        <field name="success">False</field>
+        <description>Psono: $(psono_name) Fileserver Chunk Cleanup Failed</description>
+    </rule>
+    <rule id="100813" level="0">
+        <field name="api_path">restapi.views.secret</field>
+        <description>Psono Secret Viewed</description>
+    </rule>
+    <rule id="100814" level="3">
+        <if_sid>100813</if_sid>
+        <field name="success">True</field>
+        <description>Psono: $(dstuser) Read Secret Success</description>
+    </rule>
+    <rule id="100815" level="3">
+        <if_sid>100813</if_sid>
+        <field name="success">False</field>
+        <description>Psono: $(dstuser) Read Secret Failed</description>
+    </rule>
 </group>
